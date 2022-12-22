@@ -1,0 +1,51 @@
+
+application {
+  config {
+    baseName myApp,
+    applicationType gateway,
+    packageName com.myapp,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework react
+  }
+  entities *
+}
+
+application {
+  config {
+    baseName Grade,
+    applicationType microservice,
+    packageName com.myapp,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+  }
+  entities ClassRoom, Student, Teacher
+}
+
+application {
+  config {
+    baseName Lacture,
+    applicationType microservice,
+    packageName com.myapp,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+  }
+  entities Student, Teacher, Subject
+}
+
+entity ClassRoom { classNo String }
+
+entity Student { studentName String, studentId Long }
+
+entity Teacher { teacherName String, contactNo String }
+
+entity Subject { subjectName String }
+
+relationship OneToMany {
+  ClassRoom to Student
+  ClassRoom to Teacher
+  Teacher to Student
+  Teacher to Subject
+  Student to Subject
+}
+    
